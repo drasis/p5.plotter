@@ -5,14 +5,11 @@ function setup() {
 }
 
 function draw() {
-  background("white");
-  noFill();
-  stroke("black");
-  strokeWeight(1);
+  plotty.grabPen(4);
   plotty.translate(width/2, height/2.3);
+  plotty.goToPoint(0, 0);
+  plotty.penDown();
   for (var i = 0; i < 60; i++) {
-    plotty.push();
-    console.log(plotty.matrix);
     plotty.rotateDeg(6);
     plotty.translate(width/300,0);
     plotty.beginShape();
@@ -21,7 +18,6 @@ function draw() {
     plotty.vertex(width/7, width/4.5);
     plotty.vertex(width/7, 0);
     plotty.endShape(CLOSE);
-    // plotty.pop();
   }
   plotty.print();
 }
