@@ -2,7 +2,7 @@ function makePaper() {
   mycanv = createCanvas(1030, 765);
   mycanv.position(0,0);
   background("white");
-  blendMode(HARD_LIGHT);
+  blendMode(MULTIPLY);
   noFill();
   noStroke();
 }
@@ -11,7 +11,7 @@ class Plotty {
   constructor() {
     this.matrices = [new Matrix()];
     this.matrix = this.matrices.pop();
-    this.hpgl = ["PU;"];
+    this.hpgl = [];
     this.colors = ["", "black", "pink", "orange", "green", "red", "blue", "yellow", "brown"];
     this.currentColor = 0;
     this.startingVertex = null;
@@ -54,18 +54,10 @@ class Plotty {
     this.matrix.translate(x, y);
   }
 
-  // push() {
-  //   this.matrices.push(this.matrix);
-  //   this.matrix = deepcopy(this.matrix);
-  //   // console.log(this.matrices)
-  // }
-  // pop() {
-  //   this.matrix = this.matrices.pop();
-  // }
-
   print() {
-    this.hpgl.push("PU;")
-    console.log(this.hpgl);
+    this.hpgl.push("PU;");
+    this.hpgl.push("");
+    console.log(this.hpgl.join("\n"));
     noLoop();
   }
 
@@ -79,7 +71,7 @@ class Plotty {
     if (this.currentColor === 0) {
       throw "cannot draw if not holding a pen.";
     }
-    this.hpgl.push("PU;");
+    this.hpgl.push("PD;");
     stroke(this.colors[this.currentColor]);
     strokeWeight(2);
     this.penIsUp = false;
@@ -102,8 +94,13 @@ class Plotty {
     var t = this.matrix.applyToPoint(x, y);
     this.hpgl.push(`PA ${int(t.x)}, ${int(t.y)};`)
   }
-}
 
-// function deepcopy(o) {
-//   return JSON.parse(JSON.stringify(o));
-// }
+  // push() {
+  //   this.matrices.push(this.matrix);
+  //   this.matrix = deepcopy(this.matrix);
+  //   // console.log(this.matrices)
+  // }
+  // pop() {
+  //   this.matrix = this.matrices.pop();
+  // }
+}
