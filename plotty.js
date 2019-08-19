@@ -18,12 +18,11 @@ class Plotty {
     this.penIsUp = true;
   }
 
-  line(x1, y1, x2, y2) {
-    var t1 = this.matrix.applyToPoint(x1, y1);
-    var t2 = this.matrix.applyToPoint(x2, y2);
-    line(t1.x, t1.y, t2.x, t2.y);
-    this.hpgl.push(`PA ${int(t1.x) * 10}, ${int(t1.y) * 10};`)
-    this.hpgl.push(`PA ${int(t2.x) * 10}, ${int(t2.y) * 10};`)
+  line(x1, y1, x2, y2) { // need to test
+    this.beginShape();
+    this.vertex(x1, y1);
+    this.vertex(x2, y2);
+    this.endShape();
   }
 
   beginShape(n = null) {
