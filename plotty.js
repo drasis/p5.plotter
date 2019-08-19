@@ -95,6 +95,25 @@ class Plotty {
     this.hpgl.push(`PA ${int(t.x)}, ${int(t.y)};`)
   }
 
+  ellipse(x, y, w, h) {
+    push();
+    this.beginShape();
+    angleMode(DEGREES);
+    for (var i = 0; i < 360; i++) {
+      this.vertex(x + (w/2 * sin(i)), y + (h/2 * cos(i)));
+    }
+    this.endShape(CLOSE);
+    pop();
+  }
+
+  triangle(x1, y1, x2, y2, x3, y3) {
+    this.beginShape();
+    this.vertex(x1, y1);
+    this.vertex(x2, y2);
+    this.vertex(x3, y3);
+    this.endShape(CLOSE);
+  }
+  
   // push() {
   //   this.matrices.push(this.matrix);
   //   this.matrix = deepcopy(this.matrix);
