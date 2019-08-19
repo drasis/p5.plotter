@@ -22,8 +22,8 @@ class Plotty {
     var t1 = this.matrix.applyToPoint(x1, y1);
     var t2 = this.matrix.applyToPoint(x2, y2);
     line(t1.x, t1.y, t2.x, t2.y);
-    this.hpgl.push(`PA ${int(t1.x)}, ${int(t1.y)};`)
-    this.hpgl.push(`PA ${int(t2.x)}, ${int(t2.y)};`)
+    this.hpgl.push(`PA ${int(t1.x) * 10}, ${int(t1.y) * 10};`)
+    this.hpgl.push(`PA ${int(t2.x) * 10}, ${int(t2.y) * 10};`)
   }
 
   beginShape(n = null) {
@@ -32,7 +32,7 @@ class Plotty {
 
   endShape(n = null) {
     if (n === CLOSE) {
-      this.hpgl.push(`PA ${int(this.startingVertex.x)}, ${int(this.startingVertex.y)};`)
+      this.hpgl.push(`PA ${int(this.startingVertex.x) * 10}, ${int(this.startingVertex.y) * 10};`)
     }
     endShape(n);
   }
@@ -42,7 +42,7 @@ class Plotty {
     if (this.startingVertex === null) {
       this.startingVertex = t;
     }
-    this.hpgl.push(`PA ${int(t.x)}, ${int(t.y)};`)
+    this.hpgl.push(`PA ${int(t.x) * 10}, ${int(t.y) * 10};`)
     vertex(t.x, t.y);
   }
 
@@ -92,7 +92,7 @@ class Plotty {
       this.penUp();
     }
     var t = this.matrix.applyToPoint(x, y);
-    this.hpgl.push(`PA ${int(t.x)}, ${int(t.y)};`)
+    this.hpgl.push(`PA ${int(t.x) * 10}, ${int(t.y) * 10};`)
   }
 
   ellipse(x, y, w, h) {
