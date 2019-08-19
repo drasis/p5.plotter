@@ -113,6 +113,15 @@ class Plotty {
     this.vertex(x3, y3);
     this.endShape(CLOSE);
   }
+
+  quad(x1, y1, x2, y2, x3, y3, x4, y4) {
+    this.beginShape();
+    this.vertex(x1, y1);
+    this.vertex(x2, y2);
+    this.vertex(x3, y3);
+    this.vertex(x4, y4);
+    this.endShape(CLOSE);
+  }
   
   // push() {
   //   this.matrices.push(this.matrix);
